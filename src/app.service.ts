@@ -9,15 +9,16 @@ import { Address } from '@ton/core';
 @Injectable()
 export class AppService {
   async getAddress(): Promise<string> {
-    const { generatedWallet } = await createWallet();
-
+    const {mnemonic, keyPair, generatedWallet } = await createWallet();
     const addressString = generatedWallet.address.toString( {testOnly: true});
 
     if (Address.isAddress(addressString)) {
+      console.log(mnemonic);
       console.log('The address is valid:', addressString);
       return addressString;
     } else {
       console.log('The address is not valid:', addressString);
+      console.log(mnemonic);
       throw new Error('Invalid wallet address.');
     }
   }
