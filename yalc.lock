@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "ton-utils-pcp": {
+      "version": "1.0.0",
+      "signature": "a5503180dd58bd125464f0f207e6e16c",
+      "file": true
+    }
+  }
+}
