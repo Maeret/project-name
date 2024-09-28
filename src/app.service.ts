@@ -1,24 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { createWallet, 
-         getBouncableAddress,
-         getPublicAddressByMnenomic, 
-         getNonBouncableAddress,
-         getPublicAddressByWallet } from 'tonutils-ts';
+import {
+  createWallet,
+  getBouncableAddress,
+  getPublicAddressByMnenomic,
+  getNonBouncableAddress,
+  getPublicAddressByWallet
+} from 'tonutils-ts';
 import { Address } from '@ton/core';
 
 @Injectable()
 export class AppService {
-  async getAddress(): Promise<string> {
-    const {mnemonic, keyPair, generatedWallet } = await createWallet();
-    const addressString = generatedWallet.address.toString( {testOnly: true});
+  async getAddress(): Promise<any> {
+    const { mnemonic, keyPair, generatedWallet } = await createWallet();
+    const addressString = generatedWallet.address.toString(
+                                                { urlSafe:true,
+                                                  testOnly:true });
+    const publicKeyString = keyPair.publicKey.toString('base64url');
 
-    if (Address.isAddress(addressString)) {
+    if (Address.isAddress(generatedWallet.address)) {
       console.log(mnemonic);
-      console.log('The address is valid:', addressString);
+      console.log(publicKeyString)
+      console.log('Address is valid:', addressString);
       return addressString;
+
     } else {
-      console.log('The address is not valid:', addressString);
+      console.log('Address is not valid:', addressString);
       console.log(mnemonic);
+      console.log(publicKeyString);
       throw new Error('Invalid wallet address.');
     }
   }

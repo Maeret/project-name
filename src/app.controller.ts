@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
+  
+  
   @Get()
-  getAddress(): Promise<string> {
+  getAddress(): Promise<any> {
     return this.appService.getAddress();
   }
 }
