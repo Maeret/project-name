@@ -5,9 +5,8 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
   
-  
   @Get()
-  getAddress(): Promise<any> {
-    return this.appService.getAddress();
+  generateWallet(): Promise<any> {
+    return this.appService.generateWallet();
   }
 }
