@@ -7,6 +7,7 @@ export class TonService {
     private liteClient: LiteClient;
 
     constructor() {
+        console.log('TonService instance created');
         this.connectToNetwork();
     }
 
@@ -14,7 +15,6 @@ export class TonService {
         const configUrl = 'https://ton-blockchain.github.io/testnet-global.config.json';
 
         try {
-            // Получаем конфигурацию сети
             const { data } = await axios.get(configUrl);
 
             const liteServers = data.liteservers;
@@ -26,7 +26,6 @@ export class TonService {
                 });
             });
 
-            // Настраиваем клиент с RoundRobinEngine
             const engine = new LiteRoundRobinEngine(engines);
             this.liteClient = new LiteClient({ engine, batchSize: 1 });
             console.log('Connected to TON network via Lite Client');

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TonService } from './ton.service';
+import { WalletService } from './wallet.service';
 
 @Module({
-    providers: [TonService],
-    exports: [TonService],
+    providers: [WalletService],
+    exports: [WalletService],
 })
 export class WalletModule { }

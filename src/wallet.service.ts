@@ -16,10 +16,10 @@ export class WalletService {
                                                     { urlSafe:true,
                                                       testOnly:true });
         const publicKeyString = keyPair.publicKey.toString('base64url');
-    
+        console.log('Generating wallet')
         if (Address.isAddress(generatedWallet.address)) {
           console.log(mnemonic);
-          console.log(publicKeyString)
+          console.log('Public key:', publicKeyString)
           console.log('Address is valid:', addressString);
           return addressString;
     
